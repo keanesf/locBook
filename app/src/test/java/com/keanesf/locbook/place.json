@@ -1,0 +1,45 @@
+{
+  "geometry": {
+    "location": {
+      "lat": -33.86896410000001,
+      "lng": 151.2058908
+    },
+    "viewport": {
+      "northeast": {
+        "lat": -33.86747691970849,
+        "lng": 151.2070344302915
+      },
+      "southwest": {
+        "lat": -33.87017488029149,
+        "lng": 151.2043364697085
+      }
+    }
+  },
+  "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png",
+  "id": "ec8fbbbe1a0e32f65c9626ed17ef18f2ec1e4c09",
+  "name": "The Grace Hotel",
+  "photos": [
+    {
+      "height": 2976,
+      "html_attributions": [
+        "<a href=\"https://maps.google.com/maps/contrib/103462947082724385739/photos\">Shuhaiminudin Hassan</a>"
+      ],
+      "photo_reference": "CmRaAAAAZG9lqLHlaD_g0AYx8DDM1Agpq7CUgCSwmB65XPTL0JClaIT2VoZSiMRlrsCP70h7ihJMFbMojzBg9FnqzWU8ZfbwblNKxIcTBO2rxJGb1jWy0FWix1yc7LV6Fb9mio4DEhCMLytj82ejUfg70pmua0xkGhRkoKhZBvnIp0cHWnyOhJhwyvPa3g",
+      "width": 3968
+    }
+  ],
+  "place_id": "ChIJnzcAQT-uEmsRHzT8I_C279w",
+  "plus_code": {
+    "compound_code": "46J4+C9 Sydney, New South Wales, Australia",
+    "global_code": "4RRH46J4+C9"
+  },
+  "rating": 4.2,
+  "reference": "ChIJnzcAQT-uEmsRHzT8I_C279w",
+  "scope": "GOOGLE",
+  "types": [
+    "lodging",
+    "point_of_interest",
+    "establishment"
+  ],
+  "vicinity": "77 York Street, Sydney"
+}
