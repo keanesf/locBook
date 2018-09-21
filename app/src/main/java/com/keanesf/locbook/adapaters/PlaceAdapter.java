@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 
 import com.keanesf.locbook.R;
 import com.keanesf.locbook.models.Place;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -33,49 +34,38 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ItemViewHold
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.recipe_item_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.master_list_item_layout, parent, false);
         return new ItemViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
+
         Context context = holder.itemView.getContext();
-        String recipeName = places.get(position).getName();
-        String imagePath = places.get(position).getImage();
-        int recipePic;
+        String placeName = places.get(position).getName();
+        holder.placeTitle.setText(placeName);
 
-        switch (recipeName) {
-            case "Nutella Pie":
-                recipePic = R.drawable.nutella_pie;
-                break;
-            case "Brownies":
-                recipePic = R.drawable.brownies;
-                break;
-            case "Yellow Cake":
-                recipePic = R.drawable.yellow_cake;
-                break;
-            case "Cheesecake":
-                recipePic = R.drawable.cheesecake;
-                break;
-            default:
-                recipePic = R.drawable.image_placeholder;
+        // todo add photo
+
+        String photoReference = null;
+        if(places.get(position).getPhotos().size() > 0){
+            photoReference = places.get(position).getPhotos().get(0).getPhotoReference();
+
         }
 
-        holder.recipeTitle.setText(recipeName);
-
-        if (imagePath.equals("")) {
-            Picasso.with(context)
-                    .load(recipePic)
-                    .placeholder(R.drawable.image_placeholder)
-                    .error(R.drawable.image_placeholder)
-                    .into(holder.recipeThumbnail);
-        } else {
-            Picasso.with(context)
-                    .load(imagePath)
-                    .placeholder(R.drawable.image_placeholder)
-                    .error(R.drawable.image_placeholder)
-                    .into(holder.recipeThumbnail);
-        }
+//        if (photoReference.equals("")) {
+//            Picasso.with(context)
+//                    .load(recipePic)
+//                    .placeholder(R.drawable.image_placeholder)
+//                    .error(R.drawable.image_placeholder)
+//                    .into(holder.placeThumbnail);
+//        } else {
+//            Picasso.with(context)
+//                    .load(imagePath)
+//                    .placeholder(R.drawable.image_placeholder)
+//                    .error(R.drawable.image_placeholder)
+//                    .into(holder.placeThumbnail);
+//        }
     }
 
 
@@ -87,10 +77,11 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ItemViewHold
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-//        @BindView(R.id.recipe_thumbnail)
-//        ImageView recipeThumbnail;
-//        @BindView(R.id.recipe_title)
-//        TextView recipeTitle;
+        @BindView(R.id.place_thumbnail)
+        ImageView placeThumbnail;
+
+        @BindView(R.id.place_title)
+        TextView placeTitle;
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -104,5 +95,10 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ItemViewHold
             itemClickListener.onClick(places.get(position));
         }
 
+    }
+
+    public void setPlaces(List<Place> places) {
+        this.places = places;
+        notifyDataSetChanged();
     }
 }

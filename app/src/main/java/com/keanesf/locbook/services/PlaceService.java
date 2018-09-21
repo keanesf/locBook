@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 public interface PlaceService {
 
     @GET("maps/api/place/nearbysearch/json")
-    Call<GooglePlaceResponse<Place> listPlaces(
+    Call<GooglePlaceResponse<Place>> listPlaces(
             @Query("location") String location,
             @Query("radius") String radius,
             @Query("key") String apiKey

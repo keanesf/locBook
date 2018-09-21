@@ -1,10 +1,12 @@
 package com.keanesf.locbook.activites;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.keanesf.locbook.R;
 import com.keanesf.locbook.fragments.MasterListFragment;
+import com.keanesf.locbook.models.Place;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,4 +21,13 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
     }
+
+//    @Override
+//    public void onPlaceClicked(Place place) {
+//        Intent intent = new Intent(this, PlaceDetailActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("place", place);
+//        intent.putExtras(bundle);
+//        startActivity(intent);
+//    }
 }
