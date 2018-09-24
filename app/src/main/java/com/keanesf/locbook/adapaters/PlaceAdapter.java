@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
+import com.keanesf.locbook.BuildConfig;
 import com.keanesf.locbook.R;
 import com.keanesf.locbook.models.Place;
 import com.squareup.picasso.Picasso;
@@ -19,6 +20,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ItemViewHolder> {
+
+    String PLACE_IMAGE_URI = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference={{Photo_Reference}}&key={{API_KEY}}";
 
     private List<Place> places;
     private final ItemClickListener itemClickListener;
@@ -41,31 +44,46 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ItemViewHold
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
 
-        Context context = holder.itemView.getContext();
+        Place place = places.get(position);
+
         String placeName = places.get(position).getName();
         holder.placeTitle.setText(placeName);
 
+
+        if(place.getTypes() != null && place.getTypes().size() > 0){
+            // remove underscore and replace with a space
+            holder.placeType.setText(place.getTypes().get(0).replace("_", " "));
+        }
+        else {
+            holder.placeType.setText(R.string.default_place_type);
+        }
+
+        if(place.getRating() != null){
+            holder.placeRating .setText(place.getRating().toString());
+        }
+        else
+            holder.placeRating.setText(R.string.default_place_rating);
+
         // todo add photo
 
-        String photoReference = null;
-        if(places.get(position).getPhotos().size() > 0){
-            photoReference = places.get(position).getPhotos().get(0).getPhotoReference();
+        String myPlaceImageUri = null;
+        if(places.get(position).getPhotos() != null && places.get(position).getPhotos().size() > 0){
+            myPlaceImageUri = PLACE_IMAGE_URI;
+            myPlaceImageUri = myPlaceImageUri
+                    .replace("{{Photo_Reference}}", place.getPhotos().get(0).getPhotoReference())
+                    .replace("{{API_KEY}}", BuildConfig.API_KEY);
 
         }
 
-//        if (photoReference.equals("")) {
-//            Picasso.with(context)
-//                    .load(recipePic)
-//                    .placeholder(R.drawable.image_placeholder)
-//                    .error(R.drawable.image_placeholder)
-//                    .into(holder.placeThumbnail);
-//        } else {
-//            Picasso.with(context)
-//                    .load(imagePath)
-//                    .placeholder(R.drawable.image_placeholder)
-//                    .error(R.drawable.image_placeholder)
-//                    .into(holder.placeThumbnail);
-//        }
+        Context context = holder.itemView.getContext();
+
+        if (myPlaceImageUri != null) {
+            Picasso.with(context)
+                    .load(myPlaceImageUri)
+                    //.placeholder(R.drawable.image_placeholder)
+                    //.error(R.drawable.image_placeholder)
+                    .into(holder.placeThumbnail);
+        }
     }
 
 
@@ -82,6 +100,12 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ItemViewHold
 
         @BindView(R.id.place_title)
         TextView placeTitle;
+
+        @BindView(R.id.place_type)
+        TextView placeType;
+
+        @BindView(R.id.place_rating)
+        TextView placeRating;
 
         ItemViewHolder(View itemView) {
             super(itemView);

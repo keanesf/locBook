@@ -1,9 +1,15 @@
 package com.keanesf.locbook.fragments;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +33,8 @@ import butterknife.BindView;
 
 import butterknife.ButterKnife;
 import retrofit2.Call;
+
+import static android.content.Context.LOCATION_SERVICE;
 
 
 public class MasterListFragment extends Fragment implements PlaceAdapter.ItemClickListener {
@@ -95,13 +103,25 @@ public class MasterListFragment extends Fragment implements PlaceAdapter.ItemCli
             PlaceService placeService = PlaceService.retrofit.create(PlaceService.class);
 
             try {
-                    // todo get current location of user
-                    String location = "-33.8670522,151.1957362";
+                    String myLocation = "-33.8670522,151.1957362";
+
+                    LocationManager locationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
+
+                    try {
+                        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        double longitude = location.getLongitude();
+                        double latitude = location.getLatitude();
+                        myLocation = Double.toString(latitude) + "," + Double.toString(longitude);
+                    }
+                    catch(SecurityException e){
+                        Log.e(LOG_TAG, "Error getting location", e);
+                    }
+
 
                     String radius = "1500";
 
                     Call<GooglePlaceResponse<Place>> apiCall =
-                            placeService.listPlaces(location, radius, BuildConfig.API_KEY);
+                            placeService.listPlaces(myLocation, radius, BuildConfig.API_KEY);
                     return apiCall.execute().body().getResults();
 
             } catch (IOException e) {
