@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">LocBook</string>
+    <string name="appwidget_text">LocBook Widget</string>
     <string name="error_loading_data">Error loading data</string>
     <string name="title_location_permission">Allow location permission</string>
     <string name="text_location_permission">This app needs location permission to display places near you.</string>
