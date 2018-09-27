@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 
 import com.keanesf.locbook.R;
 import com.keanesf.locbook.activities.PlaceDetailActivity;
+import com.keanesf.locbook.fragments.PlaceDetailFragment;
 
 public class PlaceService extends IntentService {
 
@@ -47,6 +48,6 @@ public class PlaceService extends IntentService {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, PlaceWidgetProvider.class));
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list_view);
-        PlaceWidgetProvider.updatePlaceWidgets(this, appWidgetManager, PlaceDetailActivity.recipeTitle, appWidgetIds);
+//        PlaceWidgetProvider.updatePlaceWidgets(this, appWidgetManager, PlaceDetailFragment.placeTitle, appWidgetIds);
     }
 }

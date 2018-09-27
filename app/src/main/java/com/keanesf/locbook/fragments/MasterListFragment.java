@@ -49,6 +49,19 @@ public class MasterListFragment extends Fragment implements PlaceAdapter.ItemCli
     @BindView(R.id.spin_kit)
     SpinKitView spinKitView;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            placeClickListener = (PlaceClickListener) context;
+        } catch (ClassCastException ec) {
+            throw new ClassCastException(context.toString()
+                    + " must implement RecipeListener");
+        }
+    }
+
+
     public MasterListFragment(){}
 
     @Override

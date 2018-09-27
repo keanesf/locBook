@@ -26,7 +26,7 @@ public class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
 
     @Override
     public void onDataSetChanged() {
-        places = PlaceDetailActivity.places;
+        //places = PlaceDetailActivity.places;
     }
 
     @Override
@@ -42,11 +42,12 @@ public class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
 
     @Override
     public RemoteViews getViewAt(int i) {
-        RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.widget_list_view_item);
-        remoteViews.setTextViewText(R.id.widget_list_view_text_ingredient, ingredients.get(i).getIngredient());
-        remoteViews.setTextViewText(R.id.widget_list_view_text_measure, ingredients.get(i).getMeasure());
-        remoteViews.setTextViewText(R.id.widget_list_view_text_quantity, ingredients.get(i).getQuantity() + "");
-        return remoteViews;
+//        RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.widget_list_view_item);
+//        remoteViews.setTextViewText(R.id.widget_list_view_text_ingredient, ingredients.get(i).getIngredient());
+//        remoteViews.setTextViewText(R.id.widget_list_view_text_measure, ingredients.get(i).getMeasure());
+//        remoteViews.setTextViewText(R.id.widget_list_view_text_quantity, ingredients.get(i).getQuantity() + "");
+//        return remoteViews;
+        return null;
     }
 
     @Override

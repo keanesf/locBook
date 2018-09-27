@@ -1,6 +1,7 @@
 package com.keanesf.locbook.activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -10,10 +11,12 @@ import android.os.Bundle;
 
 import com.keanesf.locbook.R;
 import com.keanesf.locbook.fragments.MasterListFragment;
+import com.keanesf.locbook.models.Place;
 
 import android.Manifest;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements MasterListFragment.PlaceClickListener {
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
@@ -31,14 +34,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    public void onPlaceClicked(Place place) {
-//        Intent intent = new Intent(this, PlaceDetailActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("place", place);
-//        intent.putExtras(bundle);
-//        startActivity(intent);
-//    }
+    @Override
+    public void onPlaceClicked(Place place) {
+        Intent intent = new Intent(this, PlaceDetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("placeId", place.getId());
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this,
