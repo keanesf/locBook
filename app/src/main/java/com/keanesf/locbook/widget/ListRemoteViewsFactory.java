@@ -4,9 +4,7 @@ import android.content.Context;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import com.keanesf.locbook.R;
-import com.keanesf.locbook.activities.PlaceDetailActivity;
-import com.keanesf.locbook.models.Place;
+import com.keanesf.locbook.models.search.Place;
 
 import java.util.List;
 

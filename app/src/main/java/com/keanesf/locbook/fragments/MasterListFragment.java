@@ -1,16 +1,12 @@
 package com.keanesf.locbook.fragments;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,8 +18,8 @@ import com.github.ybq.android.spinkit.SpinKitView;
 import com.keanesf.locbook.BuildConfig;
 import com.keanesf.locbook.R;
 import com.keanesf.locbook.adapaters.PlaceAdapter;
-import com.keanesf.locbook.models.GooglePlaceResponse;
-import com.keanesf.locbook.models.Place;
+import com.keanesf.locbook.models.search.GooglePlaceResponse;
+import com.keanesf.locbook.models.search.Place;
 import com.keanesf.locbook.services.PlaceService;
 
 import java.io.IOException;

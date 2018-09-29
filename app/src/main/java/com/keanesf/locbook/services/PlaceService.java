@@ -1,7 +1,8 @@
 package com.keanesf.locbook.services;
 
-import com.keanesf.locbook.models.GooglePlaceResponse;
-import com.keanesf.locbook.models.Place;
+import com.keanesf.locbook.models.details.GooglePlaceDetailResponse;
+import com.keanesf.locbook.models.search.GooglePlaceResponse;
+import com.keanesf.locbook.models.search.Place;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -15,6 +16,12 @@ public interface PlaceService {
     Call<GooglePlaceResponse<Place>> listPlaces(
             @Query("location") String location,
             @Query("radius") String radius,
+            @Query("key") String apiKey
+    );
+
+    @GET("maps/api/place/details/json")
+    Call<GooglePlaceDetailResponse> getPlace(
+            @Query("placeid") String placeId,
             @Query("key") String apiKey
     );
 

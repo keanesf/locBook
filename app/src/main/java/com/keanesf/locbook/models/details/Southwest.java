@@ -1,5 +1,5 @@
 
-package com.keanesf.locbook.models;
+package com.keanesf.locbook.models.details;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Location implements Parcelable
+public class Southwest implements Parcelable
 {
 
     @SerializedName("lat")
@@ -19,24 +19,24 @@ public class Location implements Parcelable
     @SerializedName("lng")
     @Expose
     private Double lng;
-    public final static Creator<Location> CREATOR = new Creator<Location>() {
+    public final static Creator<Southwest> CREATOR = new Creator<Southwest>() {
 
 
         @SuppressWarnings({
             "unchecked"
         })
-        public Location createFromParcel(Parcel in) {
-            return new Location(in);
+        public Southwest createFromParcel(Parcel in) {
+            return new Southwest(in);
         }
 
-        public Location[] newArray(int size) {
-            return (new Location[size]);
+        public Southwest[] newArray(int size) {
+            return (new Southwest[size]);
         }
 
     }
     ;
 
-    protected Location(Parcel in) {
+    protected Southwest(Parcel in) {
         this.lat = ((Double) in.readValue((Double.class.getClassLoader())));
         this.lng = ((Double) in.readValue((Double.class.getClassLoader())));
     }
@@ -45,7 +45,7 @@ public class Location implements Parcelable
      * No args constructor for use in serialization
      * 
      */
-    public Location() {
+    public Southwest() {
     }
 
     /**
@@ -53,7 +53,7 @@ public class Location implements Parcelable
      * @param lng
      * @param lat
      */
-    public Location(Double lat, Double lng) {
+    public Southwest(Double lat, Double lng) {
         super();
         this.lat = lat;
         this.lng = lng;
@@ -90,10 +90,10 @@ public class Location implements Parcelable
         if (other == this) {
             return true;
         }
-        if ((other instanceof Location) == false) {
+        if ((other instanceof Southwest) == false) {
             return false;
         }
-        Location rhs = ((Location) other);
+        Southwest rhs = ((Southwest) other);
         return new EqualsBuilder().append(lng, rhs.lng).append(lat, rhs.lat).isEquals();
     }
 

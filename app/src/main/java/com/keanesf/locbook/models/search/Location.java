@@ -1,16 +1,16 @@
 
-package com.keanesf.locbook.models;
+package com.keanesf.locbook.models.search;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Northeast implements Parcelable
+public class Location implements Parcelable
 {
 
     @SerializedName("lat")
@@ -19,24 +19,24 @@ public class Northeast implements Parcelable
     @SerializedName("lng")
     @Expose
     private Double lng;
-    public final static Creator<Northeast> CREATOR = new Creator<Northeast>() {
+    public final static Creator<Location> CREATOR = new Creator<Location>() {
 
 
         @SuppressWarnings({
             "unchecked"
         })
-        public Northeast createFromParcel(Parcel in) {
-            return new Northeast(in);
+        public Location createFromParcel(Parcel in) {
+            return new Location(in);
         }
 
-        public Northeast[] newArray(int size) {
-            return (new Northeast[size]);
+        public Location[] newArray(int size) {
+            return (new Location[size]);
         }
 
     }
     ;
 
-    protected Northeast(Parcel in) {
+    protected Location(Parcel in) {
         this.lat = ((Double) in.readValue((Double.class.getClassLoader())));
         this.lng = ((Double) in.readValue((Double.class.getClassLoader())));
     }
@@ -45,7 +45,7 @@ public class Northeast implements Parcelable
      * No args constructor for use in serialization
      * 
      */
-    public Northeast() {
+    public Location() {
     }
 
     /**
@@ -53,7 +53,7 @@ public class Northeast implements Parcelable
      * @param lng
      * @param lat
      */
-    public Northeast(Double lat, Double lng) {
+    public Location(Double lat, Double lng) {
         super();
         this.lat = lat;
         this.lng = lng;
@@ -90,10 +90,10 @@ public class Northeast implements Parcelable
         if (other == this) {
             return true;
         }
-        if ((other instanceof Northeast) == false) {
+        if ((other instanceof Location) == false) {
             return false;
         }
-        Northeast rhs = ((Northeast) other);
+        Location rhs = ((Location) other);
         return new EqualsBuilder().append(lng, rhs.lng).append(lat, rhs.lat).isEquals();
     }
 

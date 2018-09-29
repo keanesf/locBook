@@ -11,7 +11,7 @@ import android.os.Bundle;
 
 import com.keanesf.locbook.R;
 import com.keanesf.locbook.fragments.MasterListFragment;
-import com.keanesf.locbook.models.Place;
+import com.keanesf.locbook.models.search.Place;
 
 import android.Manifest;
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
     public void onPlaceClicked(Place place) {
         Intent intent = new Intent(this, PlaceDetailActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("placeId", place.getId());
+        bundle.putString("placeId", place.getPlaceId());
         intent.putExtras(bundle);
         startActivity(intent);
     }

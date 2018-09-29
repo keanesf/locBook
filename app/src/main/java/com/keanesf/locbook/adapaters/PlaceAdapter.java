@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 
 import com.keanesf.locbook.BuildConfig;
 import com.keanesf.locbook.R;
-import com.keanesf.locbook.models.Place;
+import com.keanesf.locbook.models.search.Place;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

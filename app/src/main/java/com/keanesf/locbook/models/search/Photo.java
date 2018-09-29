@@ -1,11 +1,11 @@
 
-package com.keanesf.locbook.models;
+package com.keanesf.locbook.models.search;
 
 import java.util.List;
 import javax.validation.Valid;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.EqualsBuilder;

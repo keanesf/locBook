@@ -1,4 +1,4 @@
-package com.keanesf.locbook.models;
+package com.keanesf.locbook.models.search;
 
 import com.google.gson.annotations.SerializedName;
 
