@@ -64,7 +64,6 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ItemViewHold
         else
             holder.placeRating.setText(R.string.default_place_rating);
 
-        // todo add photo
 
         String myPlaceImageUri = null;
         if(places.get(position).getPhotos() != null && places.get(position).getPhotos().size() > 0){

@@ -103,12 +103,6 @@ public class MasterListFragment extends Fragment implements PlaceAdapter.ItemCli
 
         protected List<Place>  doInBackground(String... params) {
 
-//            if (params.length == 0) {
-//                Log.e(LOG_TAG, "No params provided!");
-//                return null;
-//            }
-
-
             PlaceService placeService = PlaceService.retrofit.create(PlaceService.class);
 
             try {

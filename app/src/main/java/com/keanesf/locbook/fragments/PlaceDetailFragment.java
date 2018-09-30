@@ -1,6 +1,7 @@
 package com.keanesf.locbook.fragments;
 
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.keanesf.locbook.BuildConfig;
@@ -16,6 +18,7 @@ import com.keanesf.locbook.R;
 import com.keanesf.locbook.models.details.GooglePlaceDetailResponse;
 import com.keanesf.locbook.models.details.Place;
 import com.keanesf.locbook.services.PlaceService;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -27,8 +30,14 @@ public class PlaceDetailFragment extends Fragment {
 
     private String placeId;
 
+    String PLACE_IMAGE_URI = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference={{Photo_Reference}}&key={{API_KEY}}";
+
+
     @BindView(R.id.place_title)
     TextView placeTitle;
+
+    @BindView(R.id.place_image)
+    ImageView placeImage;
 
     public PlaceDetailFragment() {
     }
@@ -42,7 +51,7 @@ public class PlaceDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_place, container, false);
         ButterKnife.bind(this, rootView);
 
-        placeTitle.setText(placeId);
+        //placeTitle.setText(placeId);
 
         new FetchPlaceDetailsTask().execute();
 
@@ -81,8 +90,26 @@ public class PlaceDetailFragment extends Fragment {
         @Override
         protected void onPostExecute(Place place) {
             if (place != null) {
-                //todo set data in view
-                Log.i(LOG_TAG, place.getName());
+                placeTitle.setText(place.getName());
+
+                String myPlaceImageUri = null;
+                if(place.getPhotos() != null && place.getPhotos().size() > 0){
+                    myPlaceImageUri = PLACE_IMAGE_URI;
+                    myPlaceImageUri = myPlaceImageUri
+                            .replace("{{Photo_Reference}}", place.getPhotos().get(0).getPhotoReference())
+                            .replace("{{API_KEY}}", BuildConfig.API_KEY);
+
+                }
+
+                if (myPlaceImageUri != null) {
+                    Picasso.with(getContext())
+                            .load(myPlaceImageUri)
+                            //.placeholder(R.drawable.image_placeholder)
+                            //.error(R.drawable.image_placeholder)
+                            .into(placeImage);
+                }
+
+
             }
         }
     }
