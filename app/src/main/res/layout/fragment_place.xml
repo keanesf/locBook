@@ -36,6 +36,21 @@
                 android:adjustViewBounds="true"
                 android:layout_below="@id/place_title" />
 
+            <Button
+                android:id="@+id/fav_button"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/mark_favorite"
+                android:layout_below="@id/place_image" />
+
+            <Button
+                android:id="@+id/un_fav_button"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/un_mark_favorite"
+                android:visibility="gone"
+                android:layout_below="@id/place_image" />
+
         </RelativeLayout>
 
 

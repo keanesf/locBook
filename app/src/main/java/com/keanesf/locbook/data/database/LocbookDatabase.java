@@ -3,11 +3,15 @@ package com.keanesf.locbook.data.database;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.util.Log;
 
-@Database(entities = {PlaceEntry.class}, version = 1)
+/**
+ * {@link LocbookDatabase} database for the application including a table for {@link FavoriteEntry}
+ * with the DAO {@link FavoriteDao}.
+ */
+
+@Database(entities = {FavoriteEntry.class}, version = 1)
 public abstract class LocbookDatabase extends RoomDatabase {
 
     private static final String LOG_TAG = LocbookDatabase.class.getSimpleName();
@@ -32,5 +36,5 @@ public abstract class LocbookDatabase extends RoomDatabase {
     }
 
     // The associated DAOs for the database
-    public abstract PlaceDao placeDao();
+    public abstract FavoriteDao favoriteDao();
 }

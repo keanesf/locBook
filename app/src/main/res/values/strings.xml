@@ -9,4 +9,9 @@
     <string name="default_place_rating">None</string>
     <string name="place_type_label">Type:</string>
     <string name="place_rating_label">Rating:</string>
+    <string name="mark_favorite">Mark as Favorite</string>
+    <string name="un_mark_favorite">Remove from Favorites</string>
+    <string name="add_widget">Add widget</string>
+    <string name="widget_added_text">Place added to widget!</string>
+    <string name="widget_not_added_text">Some problem occurred. Try again.</string>
 </resources>

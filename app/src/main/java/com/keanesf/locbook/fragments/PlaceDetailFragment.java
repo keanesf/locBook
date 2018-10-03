@@ -10,13 +10,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.keanesf.locbook.BuildConfig;
 import com.keanesf.locbook.R;
+import com.keanesf.locbook.data.database.FavoriteEntry;
+import com.keanesf.locbook.data.database.LocbookDatabase;
 import com.keanesf.locbook.models.details.GooglePlaceDetailResponse;
 import com.keanesf.locbook.models.details.Place;
+import com.keanesf.locbook.services.AppExecutors;
 import com.keanesf.locbook.services.PlaceService;
 import com.squareup.picasso.Picasso;
 
@@ -30,14 +34,22 @@ public class PlaceDetailFragment extends Fragment {
 
     private String placeId;
 
-    String PLACE_IMAGE_URI = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference={{Photo_Reference}}&key={{API_KEY}}";
+    private String PLACE_IMAGE_URI =
+            "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference={{Photo_Reference}}&key={{API_KEY}}";
 
+    private LocbookDatabase locbookDatabase;
 
     @BindView(R.id.place_title)
     TextView placeTitle;
 
     @BindView(R.id.place_image)
     ImageView placeImage;
+
+    @BindView(R.id.fav_button)
+    Button favButton;
+
+    @BindView(R.id.un_fav_button)
+    Button unFavButton;
 
     public PlaceDetailFragment() {
     }
@@ -51,7 +63,57 @@ public class PlaceDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_place, container, false);
         ButterKnife.bind(this, rootView);
 
-        //placeTitle.setText(placeId);
+        locbookDatabase = LocbookDatabase.getInstance(getContext());
+
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                FavoriteEntry favoriteEntry =
+                        locbookDatabase.favoriteDao().getById(placeId);
+                if(favoriteEntry != null){
+                    favButton.setVisibility(View.GONE);
+                    unFavButton.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+
+        favButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                final FavoriteEntry favoriteEntry = new FavoriteEntry(placeId);
+
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        locbookDatabase.favoriteDao().insert(favoriteEntry);
+                    }
+                });
+
+
+                // Code here executes on main thread after user presses favorite button
+                favButton.setVisibility(View.GONE);
+                unFavButton.setVisibility(View.VISIBLE);
+            }
+        });
+
+        unFavButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        FavoriteEntry favoriteEntry =
+                                locbookDatabase.favoriteDao().getById(placeId);
+                        locbookDatabase.favoriteDao().delete(favoriteEntry);
+                    }
+                });
+
+
+                // Code here executes on main thread after user presses favorite button
+                favButton.setVisibility(View.VISIBLE);
+                unFavButton.setVisibility(View.INVISIBLE);
+            }
+        });
 
         new FetchPlaceDetailsTask().execute();
 
