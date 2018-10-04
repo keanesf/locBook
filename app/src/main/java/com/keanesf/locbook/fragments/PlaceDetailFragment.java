@@ -170,8 +170,6 @@ public class PlaceDetailFragment extends Fragment {
                             //.error(R.drawable.image_placeholder)
                             .into(placeImage);
                 }
-
-
             }
         }
     }

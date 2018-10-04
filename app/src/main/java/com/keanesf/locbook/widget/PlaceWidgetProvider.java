@@ -10,9 +10,10 @@ import com.keanesf.locbook.R;
 
 public class PlaceWidgetProvider extends AppWidgetProvider {
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, String recipeName, int appWidgetId) {
+    static void updateAppWidget(
+            Context context, AppWidgetManager appWidgetManager, String placeName, int appWidgetId) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.place_widget);
-        views.setTextViewText(R.id.appwidget_text, recipeName);
+        views.setTextViewText(R.id.appwidget_text, placeName);
         Intent intent = new Intent(context, ListViewService.class);
         views.setRemoteAdapter(R.id.widget_list_view, intent);
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -20,12 +21,13 @@ public class PlaceWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        PlaceService.startActionChangePlaceList(context);
+        PlaceService.startActionChangePlace(context);
     }
 
-    public static void updatePlaceWidgets(Context context, AppWidgetManager appWidgetManager, String recipeName, int[] appWidgetIds) {
+    public static void updatePlaceWidgets(
+            Context context, AppWidgetManager appWidgetManager, String placeName, int[] appWidgetIds) {
         for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, recipeName, appWidgetId);
+            updateAppWidget(context, appWidgetManager, placeName, appWidgetId);
         }
     }
 

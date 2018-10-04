@@ -25,12 +25,12 @@ public class PlaceService extends IntentService {
         if (intent != null) {
             final String action = intent.getAction();
             if (ACTION_CHANGE_PLACE_LIST.equals(action)) {
-                handleActionChangePlaceList();
+                handleActionChangePlace();
             }
         }
     }
 
-    public static boolean startActionChangePlaceList(Context context) {
+    public static boolean startActionChangePlace(Context context) {
         Intent intent = new Intent(context, PlaceService.class);
         intent.setAction(ACTION_CHANGE_PLACE_LIST);
 
@@ -44,10 +44,12 @@ public class PlaceService extends IntentService {
         }
     }
 
-    private void handleActionChangePlaceList() {
+    private void handleActionChangePlace() {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, PlaceWidgetProvider.class));
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
+                new ComponentName(this, PlaceWidgetProvider.class));
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list_view);
-//        PlaceWidgetProvider.updatePlaceWidgets(this, appWidgetManager, PlaceDetailFragment.placeTitle, appWidgetIds);
+        PlaceWidgetProvider.updatePlaceWidgets(
+                this, appWidgetManager, PlaceDetailActivity.placeTitle, appWidgetIds);
     }
 }

@@ -21,6 +21,8 @@ public class PlaceDetailActivity extends AppCompatActivity {
     @BindView(R.id.parent_container)
     FrameLayout parentContainer;
 
+    public static String placeTitle = "Place Title";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +61,7 @@ public class PlaceDetailActivity extends AppCompatActivity {
         int itemId = item.getItemId();
         boolean placeAdded;
         if (itemId == R.id.action_add) {
-            //recipeTitle = recipe.getName();
-            //ingredients = recipe.getIngredients();
-            placeAdded = PlaceService.startActionChangePlaceList(this);
+            placeAdded = PlaceService.startActionChangePlace(this);
 
             if (placeAdded)
                 Snackbar.make(parentContainer, R.string.widget_added_text, Snackbar.LENGTH_SHORT).show();
