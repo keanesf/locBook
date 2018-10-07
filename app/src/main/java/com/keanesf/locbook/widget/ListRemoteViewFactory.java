@@ -5,7 +5,8 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.keanesf.locbook.R;
-import com.keanesf.locbook.models.search.Place;
+import com.keanesf.locbook.activities.PlaceDetailActivity;
+import com.keanesf.locbook.models.details.Place;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class ListRemoteViewFactory implements RemoteViewsService.RemoteViewsFact
 
     @Override
     public void onDataSetChanged() {
-        //modelList = PlaceDetailActivity.places;
+        modelList.add(PlaceDetailActivity.place);
     }
 
     @Override
@@ -42,12 +43,10 @@ public class ListRemoteViewFactory implements RemoteViewsService.RemoteViewsFact
 
     @Override
     public RemoteViews getViewAt(int i) {
-//        RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.widget_list_view_item);
-//        remoteViews.setTextViewText(R.id.widget_list_view_text_ingredient, modelList.get(i).getIngredient());
-//        remoteViews.setTextViewText(R.id.widget_list_view_text_quantity, modelList.get(i).getQuantity() + "");
-//        remoteViews.setTextViewText(R.id.widget_list_view_text_measure, modelList.get(i).getMeasure());
-//        return remoteViews;
-        return null;
+        RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.widget_list_view_item);
+        remoteViews.setTextViewText(R.id.widget_list_view_text_rating, modelList.get(i).getRating().toString());
+        remoteViews.setTextViewText(R.id.widget_list_view_text_type, modelList.get(i).getTypes().get(0));
+        return remoteViews;
     }
 
     @Override

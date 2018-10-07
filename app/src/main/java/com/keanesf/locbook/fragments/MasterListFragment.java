@@ -112,9 +112,11 @@ public class MasterListFragment extends Fragment implements PlaceAdapter.ItemCli
 
                     try {
                         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        double longitude = location.getLongitude();
-                        double latitude = location.getLatitude();
-                        myLocation = Double.toString(latitude) + "," + Double.toString(longitude);
+                        if(location != null){
+                            double longitude = location.getLongitude();
+                            double latitude = location.getLatitude();
+                            myLocation = Double.toString(latitude) + "," + Double.toString(longitude);
+                        }
                     }
                     catch(SecurityException e){
                         Log.e(LOG_TAG, "Error getting location", e);

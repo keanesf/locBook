@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 
 import com.keanesf.locbook.R;
 import com.keanesf.locbook.fragments.PlaceDetailFragment;
+import com.keanesf.locbook.models.details.Place;
 import com.keanesf.locbook.widget.PlaceService;
 
 import butterknife.BindView;
@@ -22,6 +23,8 @@ public class PlaceDetailActivity extends AppCompatActivity {
     FrameLayout parentContainer;
 
     public static String placeTitle = "Place Title";
+
+    public static Place place;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
