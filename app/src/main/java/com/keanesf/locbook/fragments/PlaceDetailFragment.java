@@ -53,9 +53,6 @@ public class PlaceDetailFragment extends Fragment {
     @BindView(R.id.un_fav_button)
     Button unFavButton;
 
-    public PlaceDetailFragment() {
-    }
-
     @Nullable
     @Override
     public View onCreateView(
