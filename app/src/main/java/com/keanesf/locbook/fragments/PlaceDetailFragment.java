@@ -32,6 +32,8 @@ import retrofit2.Call;
 
 public class PlaceDetailFragment extends Fragment {
 
+    public static Place mPlace;
+
     private String placeId;
 
     private String PLACE_IMAGE_URI =
@@ -152,6 +154,7 @@ public class PlaceDetailFragment extends Fragment {
         @Override
         protected void onPostExecute(Place place) {
             if (place != null) {
+                mPlace = place;
                 placeTitle.setText(place.getName());
 
                 String myPlaceImageUri = null;

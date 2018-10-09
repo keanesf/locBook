@@ -16,20 +16,23 @@ import com.keanesf.locbook.models.details.Place;
 import com.keanesf.locbook.widget.PlaceService;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class PlaceDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.parent_container)
     FrameLayout parentContainer;
 
-    public static String placeTitle = "Place Title";
+    private Unbinder unbinder;
 
-    public static Place place;
+    public static String placeTitle = "Place Title";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_detail);
+        unbinder = ButterKnife.bind(this);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();

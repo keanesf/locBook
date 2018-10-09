@@ -5,7 +5,7 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.keanesf.locbook.R;
-import com.keanesf.locbook.activities.PlaceDetailActivity;
+import com.keanesf.locbook.fragments.PlaceDetailFragment;
 import com.keanesf.locbook.models.details.Place;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     @Override
     public void onDataSetChanged() {
 
-        places.add(PlaceDetailActivity.place);
+        places.add(PlaceDetailFragment.mPlace);
 
     }
 
