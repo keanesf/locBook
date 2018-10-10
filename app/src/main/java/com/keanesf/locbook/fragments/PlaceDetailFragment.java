@@ -79,7 +79,10 @@ public class PlaceDetailFragment extends Fragment {
 
         favButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                final FavoriteEntry favoriteEntry = new FavoriteEntry(placeId);
+                final FavoriteEntry favoriteEntry = new FavoriteEntry(
+                        placeId, mPlace.getName(), mPlace.getRating(),
+                        mPlace.getTypes(), mPlace.getPhotos()
+                );
 
                 AppExecutors.getInstance().diskIO().execute(new Runnable() {
                     @Override

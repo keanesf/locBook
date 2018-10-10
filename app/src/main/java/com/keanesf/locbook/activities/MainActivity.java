@@ -14,6 +14,9 @@ import com.keanesf.locbook.fragments.MasterListFragment;
 import com.keanesf.locbook.models.search.Place;
 
 import android.Manifest;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
         implements MasterListFragment.PlaceClickListener {
@@ -113,4 +116,5 @@ public class MainActivity extends AppCompatActivity
 
         }
     }
+
 }

@@ -3,6 +3,7 @@ package com.keanesf.locbook.data.database;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.util.Log;
 
@@ -11,7 +12,7 @@ import android.util.Log;
  * with the DAO {@link FavoriteDao}.
  */
 
-@Database(entities = {FavoriteEntry.class}, version = 1)
+@Database(entities = {FavoriteEntry.class}, version = 2)
 public abstract class LocbookDatabase extends RoomDatabase {
 
     private static final String LOG_TAG = LocbookDatabase.class.getSimpleName();

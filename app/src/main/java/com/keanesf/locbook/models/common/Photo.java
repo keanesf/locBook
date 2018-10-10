@@ -1,16 +1,19 @@
 
-package com.keanesf.locbook.models.search;
+package com.keanesf.locbook.models.common;
 
-import java.util.List;
-import javax.validation.Valid;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.util.List;
+
+import javax.validation.Valid;
 
 public class Photo implements Parcelable
 {
